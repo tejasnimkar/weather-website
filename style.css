@@ -1,23 +1,8 @@
-div#carouselExampleIndicators {
-    position:relative;
+@media all and (max-width: 480px) {
+  .custom-class {
+    width: 100%;
+    display: block;
+  }
 }
 
-div.form-group{
-    position:absolute;
-    z-index:9999999;
-    top:40vh; /* change to whatever you want */
-    left:38vw; /* change to whatever you want */
-    right:38vw; /* change to whatever you want */
-    bottom:40vw; /* change to whatever you want */
-}
-
-
-.input-search{
-
-
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
-
-}
-  
+/*# sourceMappingURL=style.css.map */
