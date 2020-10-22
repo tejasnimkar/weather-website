@@ -8,6 +8,7 @@
   <script defer src="jquery-3.5.1.js"></script>
   <script defer src="./bootstrap/bootstrap.js"></script>
   <script defer src="script.js"></script>
+  <script defer type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body class="main-body">
   <!-- this is header -->
@@ -23,21 +24,20 @@
           
           <form class="form-inline my-2 my-lg-0">
               <input id="searchInput" class="form-control mr-sm-2 text-center" type="search" placeholder="Search City Here" aria-label="Search">
-              <button id="searchBtn" class="btn btn-outline-info custom-class my-2 my-sm-0" type="button">Search <i class="fa fa-search" aria-hidden="true"></i></button>
+              <button id="searchBtn" class="btn btn-outline-info custom-class my-2 my-sm-0" type="button">Search <i  class="fa fa-search" aria-hidden="true"></i></button>
               
             </form>
            
           </div>
           <ul class="navbar-nav ml-auto">
-              <li class="nav-item mx-auto active">
-                
-                  <button id="locationBtn" class="btn text-center"><span class="geo-location"></span><i class="fa fa-map-marker" aria-hidden="true"></i></button>
+              <li class="nav-item mx-auto active"><span id="currentCityName"></span>
+                  <button id="locationBtn"  class="btn text-center"><span class="geo-location"></span><i class="fa fa-map-marker" aria-hidden="true"></i></button>
                 </li>     
           <li class="nav-item active">
             <a class="nav-link text-center text-dark" href="index.html">Home <i class="fa fa-home" aria-hidden="true"></i></span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-center text-dark" href="#">Weather News</a>
+            <a class="nav-link text-center text-dark" href="#">Across Cities</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-center text-dark" href="#">About Us <i class="fa fa-info-circle" aria-hidden="true"></i></a>
@@ -52,7 +52,7 @@
     <div class="cointainer-fluid">
       <div class="row">
         
-        
+        <div class="demo"></div>
       </div>
     </div>
   </main>

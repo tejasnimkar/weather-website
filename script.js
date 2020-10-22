@@ -1,20 +1,21 @@
-//pk.a9f9cf73f0a99568cb2448b14d60e152
+
 //search by city function
 $(document).ready(function(){
+    //get button from DOM
     $('#searchBtn').click(function(){
+        //get user input from DOM
         let searchKey = $('#searchInput').val().toLowerCase()
         let apiKey='330f410d0d1340eca59170741202110'
-        console.log(searchKey)
+        //console.log(searchKey)
 
-       let theUrl='http://api.weatherapi.com/v1/current.json?key='+apiKey+'&q='+searchKey.toString()
-
-       $.ajax({
-           
+        let theUrl='http://api.weatherapi.com/v1/current.json?key='+apiKey+'&q='+searchKey.toString()
+        //ajax function to hit api appending search key
+        $.ajax({
             url:theUrl,
             type:'json',
             success:function(response){
             console.log(response)
-
+            
             var result=[]
             result+=
             `<div class="col col-sm-12 col-md-4">
@@ -36,10 +37,13 @@ $(document).ready(function(){
 
             
             </div>
-            <div class="col-sm-12 col-md-8">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</div>
+            <div id="chart_div" class="col-sm-12 col-md-8"></div>
 
             
             `
+
+
+
             $('.row').empty()
             $('.row').append(result)
            }
@@ -50,106 +54,63 @@ $(document).ready(function(){
     })
 })
 
-
-
 //get current loaction weather
 $(document).ready(function(){
     $('#locationBtn').click(function(){
+        console.log('j')
+        //navigator to get current location
+        navigator.geolocation.getCurrentPosition(showPosition);
+        function showPosition(position) {
+            console.log(position.coords.latitude)
+            console.log(position.coords.longitude)
+            let latLongSearch = `${position.coords.latitude}`+','+`${position.coords.longitude}`
+            
+            let apiKey='330f410d0d1340eca59170741202110'
+            //console.log(searchKey)
+    
+            let theUrl='http://api.weatherapi.com/v1/current.json?key='+apiKey+'&q='+latLongSearch
+            //ajax function to hit api appending lattitude and longitude
+            $.ajax({
+               
+                url:theUrl,
+                type:'json',
+                success:function(response){
+                console.log(response)
+    
+                var result=[]
+                result+=
+                `<div class="col col-sm-12 col-md-4">
+    
+                <div class="card text-center">
+                <div class="card-header text-info">
+                <h5>${response.location.name},${response.location.region},${response.location.country}</h5>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">${response.current.temp_c} degree C</h5>
+                    <p class="card-text">${response.current.condition.text},<img src="${response.current.condition.icon}"></p>
+                    <p class="card-text">wind_mph: ${response.current.wind_mph},wind_kph: ${response.current.wind_kph}</p>
+                  
+                </div>
+                <div class="card-footer text-muted">
+                last updated: ${response.current.last_updated}
+                </div>
+                </div>
+    
+                
+                </div>
+                <div class="col-sm-12 col-md-8">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</div>
+    
+                
+                `
+                $('.row').empty()
+                $('#currentCityName').empty()
+                $('.row').append(result)
+                $('#currentCityName').append(response.location.name)
+                
+               }
+           })
+
+        }
         
-        let apiKey='330f410d0d1340eca59170741202110'
-
-        function getCoordintes() { 
-            var options = { 
-                enableHighAccuracy: true, 
-                timeout: 5000, 
-                maximumAge: 0 
-            }; 
-          
-            function success(pos) { 
-                var crd = pos.coords
-                var lat = crd.latitude.toString() 
-                var lng = crd.longitude.toString() 
-                var coordinates = [lat, lng]
-                console.log(`Latitude: ${lat}, Longitude: ${lng}`) 
-                getCity(coordinates)
-                return
-          
-            } 
-          
-            function error(err) { 
-                console.warn(`ERROR(${err.code}): ${err.message}`) 
-            } 
-          
-            navigator.geolocation.getCurrentPosition(success, error, options) 
-        } 
-          
-        // Step 2: Get city name 
-        function getCity(coordinates) { 
-            var xhr = new XMLHttpRequest() 
-            var lat = coordinates[0] 
-            var lng = coordinates[1]
-          
-            // Paste your LocationIQ token below. 
-            xhr.open('GET', "https://us1.locationiq.com/v1/reverse.php?key=pk.a9f9cf73f0a99568cb2448b14d60e152&lat=" + 
-            lat + "&lon=" + lng + "&format=json", true); 
-            xhr.send(); 
-            xhr.onreadystatechange = processRequest; 
-            xhr.addEventListener("readystatechange", processRequest, false); 
-          
-            function processRequest(e) { 
-                if (xhr.readyState == 4 && xhr.status == 200) { 
-                    var response = JSON.parse(xhr.responseText) 
-                    var city = response.address.city 
-                    //console.log(city)
-                    let theUrl='http://api.weatherapi.com/v1/current.json?key='+apiKey+'&q='+city.toString()
-
-                    $.ajax({
-                       
-                        url:theUrl,
-                        type:'json',
-                        success:function(response){
-                        console.log(response)
-            
-                        var result=[]
-                        result+=
-                        `<div class="col col-sm-12 col-md-12">
-            
-                        <div class="card text-center">
-                        <div class="card-header text-info">
-                        <h5>${response.location.name},${response.location.region},${response.location.country}</h5>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">${response.current.temp_c} degree C</h5>
-                            <p class="card-text">${response.current.condition.text},<img src="${response.current.condition.icon}"></p>
-                            <p class="card-text">wind_mph: ${response.current.wind_mph},wind_kph: ${response.current.wind_kph}</p>
-                          
-                        </div>
-                        <div class="card-footer text-muted">
-                        last updated: ${response.current.last_updated}
-                        </div>
-                        </div>
-            
-                        
-                        </div>
-                        
-            
-                        
-                        `
-                        $('.row').empty()
-                        $('.geo-location').append(city)
-                        $('.row').append(result)
-                       }
-                   })
-            
-                } 
-            } 
-        } 
-          
-getCoordintes();
-
-        
-
-
-
-     })
- })
+    })
+})

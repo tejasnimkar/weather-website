@@ -4,5 +4,8 @@
     display: block;
   }
 }
+.form-inline {
+  justify-content: center;
+}
 
 /*# sourceMappingURL=style.css.map */
