@@ -1,116 +1,111 @@
 
-//search by city function
+//enable search button on entering something in input box
 $(document).ready(function(){
-    //get button from DOM
-    $('#searchBtn').click(function(){
-        //get user input from DOM
-        let searchKey = $('#searchInput').val().toLowerCase()
-        let apiKey='330f410d0d1340eca59170741202110'
-        //console.log(searchKey)
+    $('#searchInput').keyup(function(){
+        
+        //console.log('hi tejas')
+        if($('#searchInput').val.length==0){
+            console.log('disabled')
+            $('#searchBtn').prop('disabled',true);    
 
-        let theUrl='http://api.weatherapi.com/v1/current.json?key='+apiKey+'&q='+searchKey.toString()
-        //ajax function to hit api appending search key
-        $.ajax({
-            url:theUrl,
-            type:'json',
-            success:function(response){
-            console.log(response)
+        }else{
+            $('#searchBtn').prop('disabled',false);
+            console.log('enabled')
+                    
             
-            var result=[]
-            result+=
-            `<div class="col col-sm-12 col-md-4">
-
-            <div class="card text-center">
-            <div class="card-header text-info">
-            <h5>${response.location.name},${response.location.region},${response.location.country}</h5>
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">${response.current.temp_c} degree C</h5>
-                <p class="card-text">${response.current.condition.text},<img src="${response.current.condition.icon}"></p>
-                <p class="card-text">wind_mph: ${response.current.wind_mph},wind_kph: ${response.current.wind_kph}</p>
-              
-            </div>
-            <div class="card-footer text-muted">
-            last updated: ${response.current.last_updated}
-            </div>
-            </div>
-
-            
-            </div>
-            <div id="chart_div" class="col-sm-12 col-md-8"></div>
-
-            
-            `
-
-
-
-            $('.row').empty()
-            $('.row').append(result)
-           }
-       })
-
-
-
-    })
-})
-
-//get current loaction weather
-$(document).ready(function(){
-    $('#locationBtn').click(function(){
-        console.log('j')
-        //navigator to get current location
-        navigator.geolocation.getCurrentPosition(showPosition);
-        function showPosition(position) {
-            console.log(position.coords.latitude)
-            console.log(position.coords.longitude)
-            let latLongSearch = `${position.coords.latitude}`+','+`${position.coords.longitude}`
-            
-            let apiKey='330f410d0d1340eca59170741202110'
-            //console.log(searchKey)
-    
-            let theUrl='http://api.weatherapi.com/v1/current.json?key='+apiKey+'&q='+latLongSearch
-            //ajax function to hit api appending lattitude and longitude
-            $.ajax({
-               
-                url:theUrl,
-                type:'json',
-                success:function(response){
-                console.log(response)
-    
-                var result=[]
-                result+=
-                `<div class="col col-sm-12 col-md-4">
-    
-                <div class="card text-center">
-                <div class="card-header text-info">
-                <h5>${response.location.name},${response.location.region},${response.location.country}</h5>
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">${response.current.temp_c} degree C</h5>
-                    <p class="card-text">${response.current.condition.text},<img src="${response.current.condition.icon}"></p>
-                    <p class="card-text">wind_mph: ${response.current.wind_mph},wind_kph: ${response.current.wind_kph}</p>
-                  
-                </div>
-                <div class="card-footer text-muted">
-                last updated: ${response.current.last_updated}
-                </div>
-                </div>
-    
-                
-                </div>
-                <div class="col-sm-12 col-md-8">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</div>
-    
-                
-                `
-                $('.row').empty()
-                $('#currentCityName').empty()
-                $('.row').append(result)
-                $('#currentCityName').append(response.location.name)
-                
-               }
-           })
-
         }
         
+
+        
     })
+
 })
+
+// search city on button click
+$('#searchBtn').click(function(){
+    $('#cityName').empty()
+    $('#cityTemp').empty()
+    $('#lastUpdatedTime').empty()
+    let searchKey=$('#searchInput').val().toLowerCase()        
+     
+    let apiKey='330f410d0d1340eca59170741202110'
+ //   http://api.weatherapi.com/v1/forecast.json?key=330f410d0d1340eca59170741202110&q=London&days=1
+    let theUrl='http://api.weatherapi.com/v1/forecast.json?key='+apiKey+'&q='+searchKey.toString()+'&days=1'
+    $.ajax(
+        { 
+            url:theUrl,
+            success:function(response){
+                console.log(response)
+                //if day and if current temprature is less than 0
+                if(response.current.is_day && response.current.temp_c<=0){
+                    
+                        $('#cityName').append(response.location.name).append(',').append(response.location.region).append(',').append(response.location.country)
+                        $('#cityTemp').append(response.current.temp_c)
+                        $('#cityName').addClass('text-dark')
+                        $('#lastUpdatedTime').append(response.current.last_updated)
+                        $('.main-body').css({'background-image':"url('./assets/images/background/winter-background-2.jpg')",'background-repeat':'no-repeat'})
+    
+                }
+                //if it is day and if current temprature is less than or equal to 20 and greater than zero
+                if(response.current.is_day && response.current.temp_c<20 && response.current.temp_c>0){
+                    
+                    $('#cityName').append(response.location.name).append(',').append(response.location.region).append(',').append(response.location.country)
+                    $('#cityTemp').append(response.current.temp_c)
+                    $('#cityName').addClass('text-dark')
+                    $('#lastUpdatedTime').append(response.current.last_updated)
+                    $('.main-body').css({'background-image':"url('./assets/images/background/winter-background.jpg')",'background-repeat':'no-repeat'})
+
+                }
+                //if day and if current temprature is less than or equal to 40 and greater than twenty
+                if(response.current.is_day && response.current.temp_c>20 && response.current.temp_c<=40){
+                    
+                    $('#cityName').append(response.location.name).append(',').append(response.location.region).append(',').append(response.location.country)
+                    $('#cityTemp').append(response.current.temp_c)
+                    $('#cityName').addClass('text-dark')
+                    $('#lastUpdatedTime').append(response.current.last_updated)
+                    $('.main-body').css({'background-image':"url('./assets/images/background/sunny-beach.jpg')",'background-repeat':'no-repeat'})
+
+                }
+                //if day and if current temprature is  greater than 40   
+                if(response.current.is_day && response.current.temp_c>20 && response.current.temp_c<=40){
+                    
+                    $('#cityName').append(response.location.name).append(',').append(response.location.region).append(',').append(response.location.country)
+                    $('#cityTemp').append(response.current.temp_c)
+                    $('#cityName').addClass('text-dark')
+                    $('#lastUpdatedTime').append(response.current.last_updated)
+                    $('.main-body').css({'background-image':"url('./assets/images/background/sunny-beach.jpg')",'background-repeat':'no-repeat'})
+
+                }
+                
+                //if it is night
+                if(response.current.is_day==0){
+                    console.log(response.current.is_day)
+                    $('#cityName').append(response.location.name).append(',').append(response.location.region).append(',').append(response.location.country)
+                        $('#cityTemp').append(response.current.temp_c)
+                        $('#cityHumidity').append(response.current.humidity)
+                        $('#cityCurrentConditionText').append(response.current.condition.text)
+                        $('#cityCurrentConditionIcon').attr("src",response.current.condition.icon)
+                        $('#cityWind').append(response.current.wind_mph)
+                        $('#cityName').addClass('text-info')
+                        $('#lastUpdatedTime').append(response.current.last_updated)
+                        $('.main-body').css({'background-image':"url('./assets/images/background/night-background.jpg')",'background-repeat':'no-repeat'})
+                        $('.text-dark').removeClass('text-dark').addClass('text-light')
+                        $('.btn-outline-info').removeClass('btn-outline-info').addClass('btn-outline-light')
+                        $('.navbar-light').removeClass('navbar-light').addClass('navbar-dark')
+                } 
+                 
+
+                
+
+            
+
+                
+                
+            }
+
+        }
+    )
+
+    
+})
+ 
