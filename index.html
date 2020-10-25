@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>weather.com</title>
+  <title>weather.com-get-latest-info</title>
   <script defer src="jquery-3.5.1.js"></script>
   <script defer src="./bootstrap/bootstrap.js"></script>
   <script defer src="script.js"></script>
@@ -14,20 +14,23 @@
   <!-- this is header -->
   <header class="main-header">
     <nav class="navbar navbar-expand-lg navbar-light" id="navbar">
-      <a class="navbar-brand" href="index.html"><i id="logo" class="fa fa-cloud text-info fa-2x ml-2" aria-hidden="true"></i></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <a class="navbar-brand" href="index.html">
+        <i id="logo" class="fa fa-cloud text-info fa-2x ml-2" aria-hidden="true"></i></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" 
+        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-    
+    <!-- collapsable Navbar -->
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <div class="search-box mx-auto">
-          
           <form class="form-inline mx-auto my-2 my-lg-0">
-              <input id="searchInput" class="form-control mr-sm-2 text-center" type="search" placeholder="Search City Here" aria-label="Search">
-              <button id="searchBtn" class="btn btn-outline-info my-2 my-sm-0" type="button" disabled>Search <i class="fa fa-search" aria-hidden="true"></i></button>
-              
+              <input id="searchInput" class="form-control mr-sm-2 text-center" 
+              type="search" placeholder="Search City Here" aria-label="Search">
+              <button id="searchBtn" class="btn btn-outline-info my-2 my-sm-0" 
+              type="button" disabled>Search <i class="fa fa-search" aria-hidden="true">
+              </i></button>
             </form>
-           
           </div>
           <ul class="navbar-nav ml-auto">
               <li class="nav-item mx-auto active"><span id="currentCityName"></span>
@@ -51,79 +54,76 @@
   <main class="main-content">
     <div class="cointainer-fluid">
       <div id="main-row" class="row  mt-5 ml-4 mr-4">
+        <!-- carousel start-->
         <div id="citiesCarousel" class="col-md-6 mx-auto">
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                   <div class="carousel-item active">
-                      <div id="cityCard-1" class="card text-center ">
-                
-                          <div id="cityName-1" class="card-header text-info font-weight-bold">Delhi</div>
-                          <div class="card-body">
+                    <!-- City -1 -->
+                      <div id="cityCard-1" class="card text-center">     
+                          <div id="cityName-1" class="card-header text-info 
+                          font-weight-bold">Delhi</div>
+                            <div class="card-body">
                             <img id="cityCurrentConditionIcon-1" src="">
                             <div class="d-flex justify-content-center">
                             <h6  id="cityTemp-1" class="card-title pt-3"></h6>
-                            <a ></a>
-                            <button id="btnDegreeC-1" class="btn btn-sm" data-toggle="tooltip" data-placement="top" title="Fahrenheit/Degree"><span>&#8451;</span></button>
-                            <button id="btnDegreeF-1" class="btn btn-sm" data-toggle="tooltip" data-placement="top" title="Fahrenheit/Degree"><span>&#8457;</span></button>
+                            <button id="btnDegreeC-1" class="btn btn-sm" 
+                            data-toggle="tooltip" data-placement="top" 
+                            title="Fahrenheit/Degree"><span>&#8451;</span></button>
+                            <button id="btnDegreeF-1" class="btn btn-sm" 
+                            data-toggle="tooltip" data-placement="top" 
+                            title="Fahrenheit/Degree"><span>&#8457;</span></button>
                             </div>
-                            <h5 class="card-title">Humidity: <span id="cityHumidity-1"></span></h5>
+                            <h5 class="card-title">Humidity:
+                            <span id="cityHumidity-1"></span></h5>
                             <p id="cityCurrentConditionText-1" class="card-text"></p>
-                          
-                           
                           </div>
                           <div class="card-footer text-muted">
                             last updated: <span id="lastUpdatedTime-1"></span>
                           </div>
                         </div>
-          
                   </div>
                   <div class="carousel-item">
-                      <div id="cityCard-2" class="card text-center ">
-                
-                          <div id="cityName-2" class="card-header text-info font-weight-bold">Mumbai</div>
+                    <!-- City-2 -->
+                      <div id="cityCard-2" class="card text-center">
+                          <div id="cityName-2" class="card-header 
+                          text-info font-weight-bold">Mumbai</div>
                           <div class="card-body">
                             <img id="cityCurrentConditionIcon-2" src="">
                             <div class="d-flex justify-content-center">
                             <h6  id="cityTemp-2" class="card-title pt-3"></h6>
                             <a ></a>
-                            <button id="btnDegreeC-2" class="btn btn-sm" data-toggle="tooltip" data-placement="top" title="Fahrenheit/Degree">&#8451;</button>
-                            <button id="btnDegreeF-2" class="btn btn-sm" data-toggle="tooltip" data-placement="top" title="Fahrenheit/Degree"><span>&#8457;</span></button>
+                            <button id="btnDegreeC-2" class="btn btn-sm" 
+                            data-toggle="tooltip" data-placement="top" title="Fahrenheit/Degree">&#8451;</button>
+                            <button id="btnDegreeF-2" class="btn btn-sm" 
+                            data-toggle="tooltip" data-placement="top" title="Fahrenheit/Degree"><span>&#8457;</span></button>
                             </div>
                             <h5 class="card-title">Humidity: <span id="cityHumidity-2"></span></h5>
                             <p id="cityCurrentConditionText-2" class="card-text"></p>
-                            
-                            
-                           
                           </div>
                           <div class="card-footer text-muted">
                             last updated: <span id="lastUpdatedTime-2"></span>
                           </div>
                         </div>
-          
                   </div>
                   <div class="carousel-item">
-                      <div id="cityCard-3" class="card text-center ">
-                
+                    <!-- City -3 -->
+                      <div id="cityCard-3" class="card text-center">               
                           <div id="cityName-3" class="card-header text-info font-weight-bold">Kolkata</div>
                           <div class="card-body">
                             <img id="cityCurrentConditionIcon-3" src="">
                             <div class="d-flex justify-content-center">
                             <h6  id="cityTemp-3" class="card-title pt-3"></h6>
-                            <a ></a>
                             <button id="btnDegreeC-3" class="btn btn-sm" data-toggle="tooltip" data-placement="top" title="Fahrenheit/Degree">&#8451;</button>
                             <button id="btnDegreeF-3" class="btn btn-sm" data-toggle="tooltip" data-placement="top" title="Fahrenheit/Degree"><span>&#8457;</span></button>
                             </div>
                             <h5 class="card-title">Humidity: <span id="cityHumidity-3"></span></h5>
                             <p id="cityCurrentConditionText-3" class="card-text"></p>
-                            
-                            
-                           
                           </div>
                           <div class="card-footer text-muted">
                             last updated: <span id="lastUpdatedTime-3"></span>
                           </div>
                         </div>
-          
                   </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -135,38 +135,35 @@
                   <span class="sr-only">Next</span>
                 </a>
               </div>
-
         </div>
+        <!-- Search city and current Location -->
         <div id="cityIndividual" class="col-sm-12 col-md-4 mb-2">
             <div id="cityCard" class="card text-center">
-                  
               <div id="cityName" class="card-header text-info font-weight-bold"> </div>
               <div class="card-body">
                 <img id="cityCurrentConditionIcon" src="">
                 <div class="d-flex justify-content-center">
-                <h6  id="cityTemp" class="card-title pt-3"></h6>
-                <a ></a>
-                <button id="btnDegreeC-4" class="btn btn-sm" data-toggle="tooltip" data-placement="top" title="Fahrenheit/Degree"><span>&#8451;</span></button>
-                <button id="btnDegreeF-4" class="btn btn-sm" data-toggle="tooltip" data-placement="top" title="Fahrenheit/Degree"><span>&#8457;</span></button>
+                <h6 id="cityTemp" class="card-title pt-3"></h6>
+                <button id="btnDegreeC-4" class="btn btn-sm" 
+                data-toggle="tooltip" data-placement="top" title="Fahrenheit/Degree">
+                <span>&#8451;</span></button>
+                <button id="btnDegreeF-4" class="btn btn-sm" 
+                data-toggle="tooltip" data-placement="top" title="Fahrenheit/Degree">
+                <span>&#8457;</span></button>
                 </div>
                 <h5 class="card-title">Humidity: <span id="cityHumidity"></span></h5>
                 <p id="cityCurrentConditionText" class="card-text"></p>
-                
-                
-               
               </div>
               <div class="card-footer text-muted">
                 last updated: <span id="lastUpdatedTime"></span>
               </div>
             </div>
-  
           </div>
           <div id="cityIndividualWeather" class="col-sm-12 col-md-8 mb-2">
             <div class="card text-center">
               <div class="card-header text-info font-weight-bold">Weather Report</div>
               <div class="card">
-                  <div id="barchart_material" class="card-body">
-                    
+                  <div id="barchart_material" class="card-body">  
                   </div>
                 </div>
               </div>
@@ -175,13 +172,15 @@
       </div>
   </main>
 </article>
-
 <!-- main footer -->
-<footer class="main-footer">
-  <div class="page-footer">
-
-  </div>
-</footer>
+<footer class="page-footer font-small blue">
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2020 Copyright:
+      <a href="index.html">Single Page Weather App</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="bootstrap/bootstrap.css">
   <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.css">

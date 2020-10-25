@@ -1,12 +1,10 @@
 //get couresel of multiple cities for city-1
 $(document).ready(function(){
-    
+    //empty the tags occupied first
     $('#cityIndividual').hide()
-    $('#cityIndividualWeather').hide()
-    
+    $('#cityIndividualWeather').hide()    
     let citySearchName=$('#cityName-1').text()
     console.log(citySearchName)
-     
     let apiKey='330f410d0d1340eca59170741202110'
     //http://api.weatherapi.com/v1/current.json?key=330f410d0d1340eca59170741202110&q=London
     let theUrl='http://api.weatherapi.com/v1/current.json?key='+apiKey+'&q='+citySearchName.toString()
@@ -17,7 +15,6 @@ $(document).ready(function(){
                 console.log(response)
                 //if day and if current temprature is less than 0
                 if(response.current.is_day && response.current.temp_c<=0){
-                    
                         $('#cityName-1').empty().append(response.location.name).append(',').append(response.location.region).append(',').append(response.location.country)
                         $('#cityTemp-1').append(response.current.temp_c)
                         $('#cityHumidity-1').append(response.current.humidity)
@@ -32,7 +29,6 @@ $(document).ready(function(){
                 }
                 //if it is day and if current temprature is less than or equal to 20 and greater than zero
                 if(response.current.is_day && response.current.temp_c<20 && response.current.temp_c>0){
-                    
                         $('#cityName-1').empty().append(response.location.name).append(',').append(response.location.region).append(',').append(response.location.country)
                         $('#cityTemp-1').append(response.current.temp_c)
                         $('#cityHumidity-1').append(response.current.humidity)
@@ -60,7 +56,7 @@ $(document).ready(function(){
                 }
                 //if day and if current temprature is  greater than 40   
                 if(response.current.is_day && response.current.temp_c>40){
-                    console.log('hi sunday-1')
+                        console.log('hi sunday-1')
                         $('#cityName-1').empty().append(response.location.name).append(',').append(response.location.region).append(',').append(response.location.country).addClass('text-warning')
                         $('#cityTemp-1').append(response.current.temp_c)
                         $('#cityHumidity-1').append(response.current.humidity)
@@ -75,7 +71,6 @@ $(document).ready(function(){
                 
                 //if it is night
                 if(response.current.is_day==0){
-
                         console.log(response.current.is_day)
                         $('#cityName-1').empty().append(response.location.name).append(',').append(response.location.region).append(',').append(response.location.country)
                         $('#cityTemp-1').append(response.current.temp_c)
@@ -87,62 +82,25 @@ $(document).ready(function(){
                         $('.text-dark').removeClass('text-dark').addClass('text-light')
                         $('.btn-outline-info').removeClass('btn-outline-info').addClass('btn-outline-light')
                         $('.navbar-light').removeClass('navbar-light').addClass('navbar-dark')
-                } 
+                }
 
                     //convert degree celcius to ferhenite
-                        $(document).ready(function(){
-                        
+                        $(document).ready(function(){        
                         $('#btnDegreeF-1').hide() //by default to convert ferhenite in degree  is hidden
                         $('#btnDegreeC-1').click(function(){ //when user clicks on degree c
                             $('#cityTemp-1').empty().prepend(response.current.temp_f)
                             $('#btnDegreeF-1').show()
                             $('#btnDegreeC-1').hide()
-                            
-                            
                             $(document).ready(function(){
                                 $('#btnDegreeC-1').hide()
                                 $('#btnDegreeF-1').click(function(){ //when user clicks on degree c
                                     $('#btnDegreeF-1').hide() 
                                     $('#cityTemp-1').empty().prepend(response.current.temp_c)
                                     $('#btnDegreeC-1').show()
-                                   
-                                        
                                 })
-                            })        
-                        
+                            })
                         })
                     })
-
-            //     console.log(response.forecast.forecastday[0].day.maxtemp_c)
-            //     console.log(response.forecast.forecastday[0].day.avgtemp_c)
-            //     console.log(response.forecast.forecastday[0].day.mintemp_c)
-                
-            //     google.charts.load('current', {'packages':['bar']});
-            //     google.charts.setOnLoadCallback(drawChart);
-
-            //     function drawChart() {
-            //     var data = google.visualization.arrayToDataTable([
-            //     ['Daily Forecast', 'Avg-Humidity', 'Max-temp', 'Avg-Temp','Min-Temp'],
-            //     ['Today',response.forecast.forecastday[0].day.avghumidity,response.forecast.forecastday[0].day.maxtemp_c, response.forecast.forecastday[0].day.avgtemp_c,response.forecast.forecastday[0].day.mintemp_c],
-            //     ['Tommorrow',response.forecast.forecastday[1].day.avghumidity,response.forecast.forecastday[1].day.maxtemp_c, response.forecast.forecastday[1].day.avgtemp_c,response.forecast.forecastday[1].day.mintemp_c],
-            //     ['Nexter Day', response.forecast.forecastday[2].day.avghumidity,response.forecast.forecastday[2].day.maxtemp_c, response.forecast.forecastday[2].day.avgtemp_c,response.forecast.forecastday[2].day.mintemp_c]
-            //     ]);
-
-            //     var options = {
-            //     chart: {
-            //         title: 'For Next Few Days',
-            //     },
-            //     bars: 'vertical' // Required for Material Bar Charts.
-            //     };
-
-            //     var chart = new google.charts.Bar(document.getElementById('barchart_material'));
-
-            //     chart.draw(data, google.charts.Bar.convertOptions(options));
-            // }
-            // //redraw the chart according to window size 
-            // $( window ).resize(function() {
-            //     drawChart()
-            //   });
          }
 
 
@@ -155,8 +113,7 @@ $(document).ready(function(){
     $('#cityIndividual').hide()
     $('#cityIndividualWeather').hide()
     let citySearchName=$('#cityName-2').text()
-    console.log(citySearchName)
-     
+    console.log(citySearchName)    
     let apiKey='330f410d0d1340eca59170741202110'
     //http://api.weatherapi.com/v1/current.json?key=330f410d0d1340eca59170741202110&q=London
     let theUrl='http://api.weatherapi.com/v1/current.json?key='+apiKey+'&q='+citySearchName.toString()
@@ -167,7 +124,6 @@ $(document).ready(function(){
                 console.log(response)
                 //if day and if current temprature is less than 0
                 if(response.current.is_day && response.current.temp_c<=0){
-                    
                         $('#cityName-2').empty().append(response.location.name).append(',').append(response.location.region).append(',').append(response.location.country)
                         $('#cityTemp-2').append(response.current.temp_c)
                         $('#cityHumidity-2').append(response.current.humidity)
@@ -182,7 +138,6 @@ $(document).ready(function(){
                 }
                 //if it is day and if current temprature is less than or equal to 20 and greater than zero
                 if(response.current.is_day && response.current.temp_c<20 && response.current.temp_c>0){
-                    
                         $('#cityName-2').empty().append(response.location.name).append(',').append(response.location.region).append(',').append(response.location.country)
                         $('#cityTemp-2').append(response.current.temp_c)
                         $('#cityHumidity-2').append(response.current.humidity)
@@ -210,7 +165,7 @@ $(document).ready(function(){
                 }
                 //if day and if current temprature is  greater than 40   
                 if(response.current.is_day && response.current.temp_c>40){
-                    console.log('hi sunday-1')
+                        console.log('hi sunday-1')
                         $('#cityName-2').empty().append(response.location.name).append(',').append(response.location.region).append(',').append(response.location.country).addClass('text-warning')
                         $('#cityTemp-2').append(response.current.temp_c)
                         $('#cityHumidity-2').append(response.current.humidity)
@@ -225,7 +180,6 @@ $(document).ready(function(){
                 
                 //if it is night
                 if(response.current.is_day==0){
-
                         console.log(response.current.is_day)
                         $('#cityName-2').empty().append(response.location.name).append(',').append(response.location.region).append(',').append(response.location.country)
                         $('#cityTemp-2').append(response.current.temp_c)
@@ -241,72 +195,31 @@ $(document).ready(function(){
                 
                 //convert degree celcius to ferhenite
                 $(document).ready(function(){
-                        
                     $('#btnDegreeF-2').hide() //by default to convert ferhenite in degree  is hidden
                     $('#btnDegreeC-2').click(function(){ //when user clicks on degree c
                         $('#cityTemp-2').empty().prepend(response.current.temp_f)
                         $('#btnDegreeF-2').show()
                         $('#btnDegreeC-2').hide()
-                        
-                        
                         $(document).ready(function(){
                             $('#btnDegreeC-2').hide()
                             $('#btnDegreeF-2').click(function(){ //when user clicks on degree c
                                 $('#btnDegreeF-2').hide() 
                                 $('#cityTemp-2').empty().prepend(response.current.temp_c)
                                 $('#btnDegreeC-2').show()
-                               
-                                    
                             })
-                        })        
-                    
+                        })
                     })
                 })
-
-
-            //     console.log(response.forecast.forecastday[0].day.maxtemp_c)
-            //     console.log(response.forecast.forecastday[0].day.avgtemp_c)
-            //     console.log(response.forecast.forecastday[0].day.mintemp_c)
-                
-            //     google.charts.load('current', {'packages':['bar']});
-            //     google.charts.setOnLoadCallback(drawChart);
-
-            //     function drawChart() {
-            //     var data = google.visualization.arrayToDataTable([
-            //     ['Daily Forecast', 'Avg-Humidity', 'Max-temp', 'Avg-Temp','Min-Temp'],
-            //     ['Today',response.forecast.forecastday[0].day.avghumidity,response.forecast.forecastday[0].day.maxtemp_c, response.forecast.forecastday[0].day.avgtemp_c,response.forecast.forecastday[0].day.mintemp_c],
-            //     ['Tommorrow',response.forecast.forecastday[1].day.avghumidity,response.forecast.forecastday[1].day.maxtemp_c, response.forecast.forecastday[1].day.avgtemp_c,response.forecast.forecastday[1].day.mintemp_c],
-            //     ['Nexter Day', response.forecast.forecastday[2].day.avghumidity,response.forecast.forecastday[2].day.maxtemp_c, response.forecast.forecastday[2].day.avgtemp_c,response.forecast.forecastday[2].day.mintemp_c]
-            //     ]);
-
-            //     var options = {
-            //     chart: {
-            //         title: 'For Next Few Days',
-            //     },
-            //     bars: 'vertical' // Required for Material Bar Charts.
-            //     };
-
-            //     var chart = new google.charts.Bar(document.getElementById('barchart_material'));
-
-            //     chart.draw(data, google.charts.Bar.convertOptions(options));
-            // }
-            // //redraw the chart according to window size 
-            // $( window ).resize(function() {
-            //     drawChart()
-            //   });
          }
-
-
-
 })
 })
+
 //get couresel of multiple cities for city-3
 $(document).ready(function(){
     $('#cityIndividual').hide()
     $('#cityIndividualWeather').hide()
     let citySearchName=$('#cityName-3').text()
     console.log(citySearchName)
-     
     let apiKey='330f410d0d1340eca59170741202110'
     //http://api.weatherapi.com/v1/current.json?key=330f410d0d1340eca59170741202110&q=London
     let theUrl='http://api.weatherapi.com/v1/current.json?key='+apiKey+'&q='+citySearchName.toString()
@@ -317,7 +230,6 @@ $(document).ready(function(){
                 console.log(response)
                 //if day and if current temprature is less than 0
                 if(response.current.is_day && response.current.temp_c<=0){
-                    
                         $('#cityName-3').empty().append(response.location.name).append(',').append(response.location.region).append(',').append(response.location.country)
                         $('#cityTemp-3').append(response.current.temp_c)
                         $('#cityHumidity-3').append(response.current.humidity)
@@ -332,7 +244,6 @@ $(document).ready(function(){
                 }
                 //if it is day and if current temprature is less than or equal to 20 and greater than zero
                 if(response.current.is_day && response.current.temp_c<20 && response.current.temp_c>0){
-                    
                         $('#cityName-3').empty().append(response.location.name).append(',').append(response.location.region).append(',').append(response.location.country)
                         $('#cityTemp-3').append(response.current.temp_c)
                         $('#cityHumidity-3').append(response.current.humidity)
@@ -372,10 +283,8 @@ $(document).ready(function(){
                         $('.btn-outline-light').removeClass('btn-outline-light').addClass('btn-outline-info')
                         $('.navbar-dark').removeClass('navbar-dark').addClass('navbar-light')
                 }
-                
                 //if it is night
                 if(response.current.is_day==0){
-
                         console.log(response.current.is_day)
                         $('#cityName-3').empty().append(response.location.name).append(',').append(response.location.region).append(',').append(response.location.country)
                         $('#cityTemp-3').append(response.current.temp_c)
@@ -388,89 +297,38 @@ $(document).ready(function(){
                         $('.btn-outline-info').removeClass('btn-outline-info').addClass('btn-outline-light')
                         $('.navbar-light').removeClass('navbar-light').addClass('navbar-dark')
                 } 
-
                 $(document).ready(function(){
-                        
                     $('#btnDegreeF-3').hide() //by default to convert ferhenite in degree  is hidden
                     $('#btnDegreeC-3').click(function(){ //when user clicks on degree c
                         $('#cityTemp-3').empty().prepend(response.current.temp_f)
                         $('#btnDegreeF-3').show()
                         $('#btnDegreeC-3').hide()
-                        
-                        
                         $(document).ready(function(){
                             $('#btnDegreeC-3').hide()
                             $('#btnDegreeF-3').click(function(){ //when user clicks on degree c
                                 $('#btnDegreeF-3').hide() 
                                 $('#cityTemp-3').empty().prepend(response.current.temp_c)
                                 $('#btnDegreeC-3').show()
-                               
-                                    
                             })
-                        })        
-                    
+                        })
                     })
                 })
-            //     console.log(response.forecast.forecastday[0].day.maxtemp_c)
-            //     console.log(response.forecast.forecastday[0].day.avgtemp_c)
-            //     console.log(response.forecast.forecastday[0].day.mintemp_c)
-                
-            //     google.charts.load('current', {'packages':['bar']});
-            //     google.charts.setOnLoadCallback(drawChart);
-
-            //     function drawChart() {
-            //     var data = google.visualization.arrayToDataTable([
-            //     ['Daily Forecast', 'Avg-Humidity', 'Max-temp', 'Avg-Temp','Min-Temp'],
-            //     ['Today',response.forecast.forecastday[0].day.avghumidity,response.forecast.forecastday[0].day.maxtemp_c, response.forecast.forecastday[0].day.avgtemp_c,response.forecast.forecastday[0].day.mintemp_c],
-            //     ['Tommorrow',response.forecast.forecastday[1].day.avghumidity,response.forecast.forecastday[1].day.maxtemp_c, response.forecast.forecastday[1].day.avgtemp_c,response.forecast.forecastday[1].day.mintemp_c],
-            //     ['Nexter Day', response.forecast.forecastday[2].day.avghumidity,response.forecast.forecastday[2].day.maxtemp_c, response.forecast.forecastday[2].day.avgtemp_c,response.forecast.forecastday[2].day.mintemp_c]
-            //     ]);
-
-            //     var options = {
-            //     chart: {
-            //         title: 'For Next Few Days',
-            //     },
-            //     bars: 'vertical' // Required for Material Bar Charts.
-            //     };
-
-            //     var chart = new google.charts.Bar(document.getElementById('barchart_material'));
-
-            //     chart.draw(data, google.charts.Bar.convertOptions(options));
-            // }
-            // //redraw the chart according to window size 
-            // $( window ).resize(function() {
-            //     drawChart()
-            //   });
          }
-
-
-
 })
 })
-
-
-
 
 //enable search button on entering something in input box
 $(document).ready(function(){
     $('#searchInput').keyup(function(){
-        
         //console.log('hi tejas')
         if($('#searchInput').val.length==0){
             console.log('disabled')
-            $('#searchBtn').prop('disabled',true);    
-
+            $('#searchBtn').prop('disabled',true);
         }else{
             $('#searchBtn').prop('disabled',false);
             console.log('enabled')
-                    
-            
         }
-        
-
-        
     })
-
 })
 
 // search city on button click
@@ -478,7 +336,6 @@ $('#searchBtn').click(function(){
     //making every tag empty first
     $('#cityIndividual').show()
     $('#cityIndividualWeather').show()
-
     $('#citiesCarousel').hide()
     $('#cityName').empty()
     $('#cityTemp').empty()
@@ -486,8 +343,7 @@ $('#searchBtn').click(function(){
     $('#lastUpdatedTime').empty()
     $('#cityCurrentConditionText').empty()
     $('#cityCurrentConditionIcon').empty()
-    let searchKey=$('#searchInput').val().toLowerCase()        
-     
+    let searchKey=$('#searchInput').val().toLowerCase()
     let apiKey='330f410d0d1340eca59170741202110'
  //   http://api.weatherapi.com/v1/forecast.json?key=330f410d0d1340eca59170741202110&q=London&days=1
     let theUrl='http://api.weatherapi.com/v1/forecast.json?key='+apiKey+'&q='+searchKey.toString()+'&days=3'
@@ -513,7 +369,6 @@ $('#searchBtn').click(function(){
                 }
                 //if it is day and if current temprature is less than or equal to 20 and greater than zero
                 if(response.current.is_day && response.current.temp_c<20 && response.current.temp_c>0){
-                    
                         $('#cityName').append(response.location.name).append(',').append(response.location.region).append(',').append(response.location.country)
                         $('#cityTemp').append(response.current.temp_c)
                         $('#cityHumidity').append(response.current.humidity)
@@ -541,7 +396,7 @@ $('#searchBtn').click(function(){
                 }
                 //if day and if current temprature is  greater than 40   
                 if(response.current.is_day && response.current.temp_c>40){
-                    console.log('hi sunday-1')
+                        console.log('hi sunday-1')
                         $('#cityName').append(response.location.name).append(',').append(response.location.region).append(',').append(response.location.country).addClass('text-warning')
                         $('#cityTemp').append(response.current.temp_c)
                         $('#cityHumidity').append(response.current.humidity)
@@ -556,7 +411,6 @@ $('#searchBtn').click(function(){
                 
                 //if it is night
                 if(response.current.is_day==0){
-
                         console.log(response.current.is_day)
                         $('#cityName').append(response.location.name).append(',').append(response.location.region).append(',').append(response.location.country)
                         $('#cityTemp').append(response.current.temp_c)
@@ -571,35 +425,26 @@ $('#searchBtn').click(function(){
                 } 
 
                 $(document).ready(function(){
-                        
                     $('#btnDegreeF-4').hide() //by default to convert ferhenite in degree  is hidden
                     $('#btnDegreeC-4').click(function(){ //when user clicks on degree c
                         $('#cityTemp').empty().prepend(response.current.temp_f)
                         $('#btnDegreeF-4').show()
                         $('#btnDegreeC-4').hide()
-                        
-                        
                         $(document).ready(function(){
                             $('#btnDegreeC-4').hide()
                             $('#btnDegreeF-4').click(function(){ //when user clicks on degree c
                                 $('#btnDegreeF-4').hide() 
                                 $('#cityTemp').empty().prepend(response.current.temp_c)
                                 $('#btnDegreeC-4').show()
-                               
-                                    
                             })
-                        })        
-                    
+                        })
                     })
                 })
-
-                console.log(response.forecast.forecastday[0].day.maxtemp_c)
-                console.log(response.forecast.forecastday[0].day.avgtemp_c)
-                console.log(response.forecast.forecastday[0].day.mintemp_c)
-                
+                //console.log(response.forecast.forecastday[0].day.maxtemp_c)
+                //console.log(response.forecast.forecastday[0].day.avgtemp_c)
+                //console.log(response.forecast.forecastday[0].day.mintemp_c)
                 google.charts.load('current', {'packages':['bar']});
                 google.charts.setOnLoadCallback(drawChart);
-
                 function drawChart() {
                 var data = google.visualization.arrayToDataTable([
                 ['Daily Forecast', 'Avg-Humidity', 'Max-temp', 'Avg-Temp','Min-Temp'],
@@ -616,18 +461,15 @@ $('#searchBtn').click(function(){
                 };
 
                 var chart = new google.charts.Bar(document.getElementById('barchart_material'));
-
                 chart.draw(data, google.charts.Bar.convertOptions(options));
             }
             //redraw the chart according to window size 
-            $( window ).resize(function() {
-                drawChart()
-              });
+                $( window ).resize(function() {
+                    drawChart()
+                });
             }
-
         }
     )
-
 })
  
 //get current location and show data accordingly
@@ -635,7 +477,6 @@ $('#locationBtn').click(function(){
     //making every tag empty first
     $('#cityIndividual').show()
     $('#cityIndividualWeather').show()
-
     $('#citiesCarousel').hide()
     $('#cityName').empty()
     $('#showLocationName').empty()
@@ -646,16 +487,15 @@ $('#locationBtn').click(function(){
     $('#cityCurrentConditionText').empty()
     $('#cityCurrentConditionIcon').empty()
     $('#showLocationName').empty()
-
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
         function showPosition(position) {
-            console.log(position.coords.latitude)
-            console.log(position.coords.longitude)
+            //console.log(position.coords.latitude)
+            //console.log(position.coords.longitude)
             let latLongSearch = `${position.coords.latitude}`+','+`${position.coords.longitude}`
             let apiKey='330f410d0d1340eca59170741202110'
             //   http://api.weatherapi.com/v1/forecast.json?key=330f410d0d1340eca59170741202110&q=London&days=1
-               let theUrl='http://api.weatherapi.com/v1/forecast.json?key='+apiKey+'&q='+latLongSearch+'&days=3'
+            let theUrl='http://api.weatherapi.com/v1/forecast.json?key='+apiKey+'&q='+latLongSearch+'&days=3'
                $.ajax(
                    { 
                        url:theUrl,
@@ -722,11 +562,9 @@ $('#locationBtn').click(function(){
                            }
                            
                            //if it is night
-                           if(response.current.is_day==0){
-           
+                           if(response.current.is_day==0){          
                                    console.log(response.current.is_day)
-                                   $('#showLocationName').append(response.location.name)
-                                   
+                                   $('#showLocationName').append(response.location.name)                       
                                    $('#cityName').append(response.location.name).append(',').append(response.location.region).append(',').append(response.location.country)
                                    $('#cityTemp').append(response.current.temp_c)
                                    $('#cityHumidity').append(response.current.humidity)
@@ -739,31 +577,25 @@ $('#locationBtn').click(function(){
                                    $('.navbar-light').removeClass('navbar-light').addClass('navbar-dark')
                            } 
                            
-                           $(document).ready(function(){
-                        
+                            $(document).ready(function(){
                             $('#btnDegreeF-4').hide() //by default to convert ferhenite in degree  is hidden
                             $('#btnDegreeC-4').click(function(){ //when user clicks on degree c
                                 $('#cityTemp').empty().prepend(response.current.temp_f)
                                 $('#btnDegreeF-4').show()
                                 $('#btnDegreeC-4').hide()
-                                
-                                
                                 $(document).ready(function(){
                                     $('#btnDegreeC-4').hide()
                                     $('#btnDegreeF-4').click(function(){ //when user clicks on degree c
                                         $('#btnDegreeF-4').hide() 
                                         $('#cityTemp').empty().prepend(response.current.temp_c)
                                         $('#btnDegreeC-4').show()
-                                       
-                                            
                                     })
                                 })        
-                            
                             })
                         })
-                           console.log(response.forecast.forecastday[0].day.maxtemp_c)
-                           console.log(response.forecast.forecastday[0].day.avgtemp_c)
-                           console.log(response.forecast.forecastday[0].day.mintemp_c)
+                        //   console.log(response.forecast.forecastday[0].day.maxtemp_c)
+                        //   console.log(response.forecast.forecastday[0].day.avgtemp_c)
+                        //   console.log(response.forecast.forecastday[0].day.mintemp_c)
                            
                            google.charts.load('current', {'packages':['bar']});
                            google.charts.setOnLoadCallback(drawChart);
@@ -787,24 +619,17 @@ $('#locationBtn').click(function(){
            
                            chart.draw(data, google.charts.Bar.convertOptions(options));
                        }
-                       //redraw the chart according to window size 
-                       $( window ).resize(function() {
-                           drawChart()
-                         });
-                       }
-           
+                            //redraw the chart according to window size 
+                            $( window ).resize(function() {
+                                drawChart()
+                                });
+                            }  
                    }
                )
            
-        }
-        
-      }else{
+        } 
+      }else
+      {
           alert('Geolocation is not supported by this browser.')
       }
-    
-    
-     
-
 })
- 
-
