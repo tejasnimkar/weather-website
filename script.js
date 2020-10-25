@@ -89,6 +89,29 @@ $(document).ready(function(){
                         $('.navbar-light').removeClass('navbar-light').addClass('navbar-dark')
                 } 
 
+                    //convert degree celcius to ferhenite
+                        $(document).ready(function(){
+                        
+                        $('#btnDegreeF-1').hide() //by default to convert ferhenite in degree  is hidden
+                        $('#btnDegreeC-1').click(function(){ //when user clicks on degree c
+                            $('#cityTemp-1').empty().prepend(response.current.temp_f)
+                            $('#btnDegreeF-1').show()
+                            $('#btnDegreeC-1').hide()
+                            
+                            
+                            $(document).ready(function(){
+                                $('#btnDegreeC-1').hide()
+                                $('#btnDegreeF-1').click(function(){ //when user clicks on degree c
+                                    $('#btnDegreeF-1').hide() 
+                                    $('#cityTemp-1').empty().prepend(response.current.temp_c)
+                                    $('#btnDegreeC-1').show()
+                                   
+                                        
+                                })
+                            })        
+                        
+                        })
+                    })
 
             //     console.log(response.forecast.forecastday[0].day.maxtemp_c)
             //     console.log(response.forecast.forecastday[0].day.avgtemp_c)
@@ -214,7 +237,31 @@ $(document).ready(function(){
                         $('.text-dark').removeClass('text-dark').addClass('text-light')
                         $('.btn-outline-info').removeClass('btn-outline-info').addClass('btn-outline-light')
                         $('.navbar-light').removeClass('navbar-light').addClass('navbar-dark')
-                } 
+                }       
+                
+                //convert degree celcius to ferhenite
+                $(document).ready(function(){
+                        
+                    $('#btnDegreeF-2').hide() //by default to convert ferhenite in degree  is hidden
+                    $('#btnDegreeC-2').click(function(){ //when user clicks on degree c
+                        $('#cityTemp-2').empty().prepend(response.current.temp_f)
+                        $('#btnDegreeF-2').show()
+                        $('#btnDegreeC-2').hide()
+                        
+                        
+                        $(document).ready(function(){
+                            $('#btnDegreeC-2').hide()
+                            $('#btnDegreeF-2').click(function(){ //when user clicks on degree c
+                                $('#btnDegreeF-2').hide() 
+                                $('#cityTemp-2').empty().prepend(response.current.temp_c)
+                                $('#btnDegreeC-2').show()
+                               
+                                    
+                            })
+                        })        
+                    
+                    })
+                })
 
 
             //     console.log(response.forecast.forecastday[0].day.maxtemp_c)
@@ -342,7 +389,28 @@ $(document).ready(function(){
                         $('.navbar-light').removeClass('navbar-light').addClass('navbar-dark')
                 } 
 
-
+                $(document).ready(function(){
+                        
+                    $('#btnDegreeF-3').hide() //by default to convert ferhenite in degree  is hidden
+                    $('#btnDegreeC-3').click(function(){ //when user clicks on degree c
+                        $('#cityTemp-3').empty().prepend(response.current.temp_f)
+                        $('#btnDegreeF-3').show()
+                        $('#btnDegreeC-3').hide()
+                        
+                        
+                        $(document).ready(function(){
+                            $('#btnDegreeC-3').hide()
+                            $('#btnDegreeF-3').click(function(){ //when user clicks on degree c
+                                $('#btnDegreeF-3').hide() 
+                                $('#cityTemp-3').empty().prepend(response.current.temp_c)
+                                $('#btnDegreeC-3').show()
+                               
+                                    
+                            })
+                        })        
+                    
+                    })
+                })
             //     console.log(response.forecast.forecastday[0].day.maxtemp_c)
             //     console.log(response.forecast.forecastday[0].day.avgtemp_c)
             //     console.log(response.forecast.forecastday[0].day.mintemp_c)
@@ -502,6 +570,28 @@ $('#searchBtn').click(function(){
                         $('.navbar-light').removeClass('navbar-light').addClass('navbar-dark')
                 } 
 
+                $(document).ready(function(){
+                        
+                    $('#btnDegreeF-4').hide() //by default to convert ferhenite in degree  is hidden
+                    $('#btnDegreeC-4').click(function(){ //when user clicks on degree c
+                        $('#cityTemp').empty().prepend(response.current.temp_f)
+                        $('#btnDegreeF-4').show()
+                        $('#btnDegreeC-4').hide()
+                        
+                        
+                        $(document).ready(function(){
+                            $('#btnDegreeC-4').hide()
+                            $('#btnDegreeF-4').click(function(){ //when user clicks on degree c
+                                $('#btnDegreeF-4').hide() 
+                                $('#cityTemp').empty().prepend(response.current.temp_c)
+                                $('#btnDegreeC-4').show()
+                               
+                                    
+                            })
+                        })        
+                    
+                    })
+                })
 
                 console.log(response.forecast.forecastday[0].day.maxtemp_c)
                 console.log(response.forecast.forecastday[0].day.avgtemp_c)
@@ -543,6 +633,12 @@ $('#searchBtn').click(function(){
 //get current location and show data accordingly
 $('#locationBtn').click(function(){
     //making every tag empty first
+    $('#cityIndividual').show()
+    $('#cityIndividualWeather').show()
+
+    $('#citiesCarousel').hide()
+    $('#cityName').empty()
+    $('#showLocationName').empty()
     $('#cityName').empty()
     $('#cityTemp').empty()
     $('#cityHumidity').empty()
@@ -642,8 +738,29 @@ $('#locationBtn').click(function(){
                                    $('.btn-outline-info').removeClass('btn-outline-info').addClass('btn-outline-light')
                                    $('.navbar-light').removeClass('navbar-light').addClass('navbar-dark')
                            } 
-           
-           
+                           
+                           $(document).ready(function(){
+                        
+                            $('#btnDegreeF-4').hide() //by default to convert ferhenite in degree  is hidden
+                            $('#btnDegreeC-4').click(function(){ //when user clicks on degree c
+                                $('#cityTemp').empty().prepend(response.current.temp_f)
+                                $('#btnDegreeF-4').show()
+                                $('#btnDegreeC-4').hide()
+                                
+                                
+                                $(document).ready(function(){
+                                    $('#btnDegreeC-4').hide()
+                                    $('#btnDegreeF-4').click(function(){ //when user clicks on degree c
+                                        $('#btnDegreeF-4').hide() 
+                                        $('#cityTemp').empty().prepend(response.current.temp_c)
+                                        $('#btnDegreeC-4').show()
+                                       
+                                            
+                                    })
+                                })        
+                            
+                            })
+                        })
                            console.log(response.forecast.forecastday[0].day.maxtemp_c)
                            console.log(response.forecast.forecastday[0].day.avgtemp_c)
                            console.log(response.forecast.forecastday[0].day.mintemp_c)
@@ -690,3 +807,4 @@ $('#locationBtn').click(function(){
 
 })
  
+
