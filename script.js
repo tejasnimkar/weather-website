@@ -456,6 +456,7 @@ $('#searchBtn').click(function(){
                 var options = {
                 chart: {
                     title: 'For Next Few Days',
+                    title: `${response.forecast.forecastday[0].date}`,
                 },
                 bars: 'vertical' // Required for Material Bar Charts.
                 };
